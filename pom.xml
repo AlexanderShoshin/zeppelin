@@ -122,7 +122,7 @@
     <plugin.scm.version>1.8.1</plugin.scm.version>
     <plugin.enforcer.version>1.3.1</plugin.enforcer.version>
     <plugin.checkstyle.version>2.13</plugin.checkstyle.version>
-    <plugin.surefire.version>2.19</plugin.surefire.version>
+    <plugin.surefire.version>2.17</plugin.surefire.version>
     <plugin.assembly.version>3.0.0</plugin.assembly.version>
     <plugin.exec.version>1.2.1</plugin.exec.version>
     <plugin.cobertura.version>2.7</plugin.cobertura.version>
@@ -134,6 +134,9 @@
 
     <PermGen>64m</PermGen>
     <MaxPermGen>512m</MaxPermGen>
+
+    <!-- to be able to exclude custom tests using command line -->
+    <tests.to.exclude/>
   </properties>
 
   <dependencyManagement>
@@ -555,6 +558,9 @@
           <version>${plugin.surefire.version}</version>
           <configuration combine.children="append">
             <argLine>-Xmx2g -Xms1g -Dfile.encoding=UTF-8</argLine>
+            <excludes>
+              <exclude>${tests.to.exclude}</exclude>
+            </excludes>
           </configuration>
           <!-- <excludes> <exclude>**/itest/**</exclude> </excludes> <executions>
             <execution> <id>surefire-itest</id> <phase>integration-test</phase> <goals>
