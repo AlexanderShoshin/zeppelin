@@ -42,10 +42,37 @@ env:
 matrix:
   include:
 
+    # Test core modules (-Dtest)
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=!ZeppelinSparkClusterTest,!org.apache.zeppelin.spark.*,!HeliumBundleFactoryTest,!HeliumApplicationFactoryTest,!HeliumTest,!NotebookTest,!ZeppelinRestApiTest,!NotebookServerTest -DfailIfNoTests=false"
 
-    # Test core modules
+    # Test core modules (-Dexclude)
     - jdk: "oraclejdk7"
       env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtests.to.exclude=**/ZeppelinSparkClusterTest.java,**/org.apache.zeppelin.spark.*,**/HeliumBundleFactoryTest.java,**/HeliumApplicationFactoryTest.java,**/HeliumTest.java,**/NotebookTest.java,**/ZeppelinRestApiTest.java,**/NotebookServerTest.java -DfailIfNoTests=false"
+
+    # Test HeliumBundleFactoryTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=HeliumBundleFactoryTest -DfailIfNoTests=false"
+
+    # Test HeliumApplicationFactoryTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=HeliumApplicationFactoryTest -DfailIfNoTests=false"
+
+    # Test HeliumTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=HeliumTest -DfailIfNoTests=false"
+
+    # Test NotebookTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=NotebookTest -DfailIfNoTests=false"
+
+    # Test ZeppelinRestApiTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=ZeppelinRestApiTest -DfailIfNoTests=false"
+
+    # Test NotebookServerTest
+    - jdk: "oraclejdk7"
+      env: SCALA_VER="2.11" SPARK_VER="2.1.0" HADOOP_VER="2.6" PROFILE="-Pscalding -Phelium-dev -Pexamples -Pscala-2.11" BUILD_FLAG="package -Pbuild-distr -DskipRat" TEST_FLAG="verify -Pusing-packaged-distr -DskipRat" MODULES="-pl ${INTERPRETERS}" TEST_PROJECTS="-Dtest=NotebookServerTest -DfailIfNoTests=false"
 
 before_install:
   # check files included in commit range, clear bower_components if a bower.json file has changed.
